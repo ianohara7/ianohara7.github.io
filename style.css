@@ -1,0 +1,76 @@
+.info{
+    text-align: justify;
+    color:#f00;
+    font-weight: 600;
+}
+body{
+    padding-top: 3rem;
+}
+.hero {
+    color:#fff;
+    padding: 20vh 0;
+    background: rgb(0,0,0); /* Old browsers */
+    background: -moz-linear-gradient(left, rgba(0,0,0,1) 0%, rgba(18,13,22,1) 39%, rgba(43,6,32,1) 69%, rgba(150,45,50,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, rgba(0,0,0,1) 0%,rgba(18,13,22,1) 39%,rgba(43,6,32,1) 69%,rgba(150,45,50,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, rgba(0,0,0,1) 0%,rgba(18,13,22,1) 39%,rgba(43,6,32,1) 69%,rgba(150,45,50,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#962d32',GradientType=1 ); /* IE6-9 */
+  }
+  
+  .features {
+   
+    background: #343a40;
+    color: white;
+  }
+  
+  .pricing {
+    text-align: center;
+  }
+  
+  .featured-price {
+    transform: scale(1.1);
+    z-index: 10;
+    background: #343a40;
+  }
+  
+  footer {
+    padding: 10vh 0;
+    text-align: center;
+    background: black;
+    color: white;
+  }
+
+/*global classes*/
+.mt20{
+    margin-top: 20px;
+    padding-top: 3rem;
+}
+.pt100{
+    padding-top: 100px;
+}
+.pb100{
+    padding-bottom: 100px;
+}
+/* Extra small devices (phones, up to 480px) */
+@media screen and (max-width: 767px)  {
+    .info{
+        font-size: 0.8em;
+    }
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .info{
+        font-size: 0.8em;
+    }
+}
+/* tablets/desktops and up ----------- */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .info{
+        font-size: 1em;
+    }
+}
+/* large desktops and up ----------- */
+@media screen and (min-width: 1200px) {
+    .info{
+        font-size:1em;
+    }
+}
