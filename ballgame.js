@@ -1,19 +1,8 @@
-var bSize = {
-    bWidth: window.innerWidth ||
-      root.clientWidth ||
-      body.clientWidth,
-    bHeight: window.innerHeight ||
-      root.clientHeight ||
-      body.clientHeight,
-  };
-  
-var canvas = document.getElementById("canvas");
  
- window.onload = function() { 
-    var config = {
+   var config = {
         type: Phaser.AUTO,
-        width: bSize.bWidth,
-        height: bSize.bHeight,
+        width:800,
+        height: 600,
         physics: {
             default: 'arcade',
             arcade: {
@@ -44,7 +33,6 @@ var canvas = document.getElementById("canvas");
 
     function create ()
     {
-         // Scaling options
        
 
         KeyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
@@ -67,6 +55,7 @@ var canvas = document.getElementById("canvas");
         });
 
         player = this.physics.add.image(400, 200, 'player');
+        this.physics.add.collider(player, platforms);
 
 
         player.setVelocity(100, 200);
@@ -87,5 +76,4 @@ var canvas = document.getElementById("canvas");
       }
     }
     
- }
  
