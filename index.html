@@ -3,13 +3,17 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | QuimicaWeb</title>
+    <title>QuimicaWeb</title>
     <script src="Build/UnityLoader.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="styleunity.css" />
     <script>
       var gameInstance = UnityLoader.instantiate("gameContainer", "Build/PaWeb.json");
     </script>
   </head>
   <body>
-    <div id="gameContainer" style="width: 720px; height: 1280px; margin: auto"></div>
+    <div class="fullscreen">
+      <div id="gameContainer" style="width: 720px; height: 1280px; margin: auto">
+      </div>
+    </div>
   </body>
 </html>
