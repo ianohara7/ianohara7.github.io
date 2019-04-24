@@ -1,163 +1,159 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>8th Wall Web: Portal</title>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ian's Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+</head>
+<body>
 
-    <!-- We've included a slightly modified version of A-Frame, which fixes some polish concerns -->
-    <script src="//cdn.8thwall.com/web/aframe/8frame-0.8.2.min.js"></script>
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">LOGO</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+                <li class="nav-item active">
+                      <a class="nav-link scroll" href="#top">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                      <a class="nav-link scroll" href="#features">Features</a>
+                </li>
+                <li class="nav-item">
+                      <a class="nav-link scroll" href="#pricing">Precios</a>
+                </li>
+                <li class="nav-item">
+                      <a class="nav-link scroll" href="#contact">Contacto</a>
+                </li>
+          </ul>
+    </div>
+  </nav>
 
-    <!-- XR Extras - provides utilities like load screen, almost there, and error handling.
-         See github.com/8thwall/web/xrextras -->
-    <script src="//cdn.8thwall.com/web/xrextras/xrextras.js"></script>
+</header>
+    
+    <section class="hero" id="top">
+      <div class="container pt100 pb100">
+        <div class="row">
+          <div class="col-lg-12">
+            <h1 class="display-3">Hello World</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="features" id="features">
+      <div class="container pt100 pb100">
+        <h1 class="mb-5 display-4">Features</h1>
+        <div class="row">
+          <div class="col-md-4">
+            <h3>Lorem ipsum dolor sit amet</h3>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+          <div class="col-md-4">
+            <h3>Consectetuer adipiscing elit.</h3>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+          <div class="col-md-4">
+            <h3>Lorem ipsum dolor sit amet</h3>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- 8thWall Web - Replace the app key here with your own app key -->
-    <script async src="//apps.8thwall.com/xrweb?appKey=jmOKEfjzgPFBfLoEKTzet6bWkTapB6P5o6p3YPOSCDDCZ7NnpANMJnLZbzvr3FXu2Ydc1A"></script>
-
-    <script>
-      // This component gives the invisible hider walls the property they need
-      AFRAME.registerComponent('hider-material', {
-        init: function() {
-          const mesh = this.el.getObject3D('mesh')
-          mesh.material.colorWrite = false
-        },
-      })
-
-      // This component hides and shows certain elements as the camera moves
-      AFRAME.registerComponent('portal', {
-        schema: {
-          width: {default: 4},
-          height: {default: 6},
-          depth: {default: 1},
-        },
-        init: function(){
-          this.camera = document.getElementById('camera')
-          this.contents = document.getElementById('portal-contents')
-          this.walls = document.getElementById('hider-walls')
-          this.portalWall = document.getElementById('portal-wall')
-          this.portalWorld = document.getElementById('portal-world')
-          this.isInPortalSpace = false
-          this.wasOutside = true
-        },
-        tick: function() {
-          const position = this.camera.object3D.position
-
-          const isOutside = position.z  > this.data.depth / 2
-          const withinPortalBounds =
-            position.y < this.data.height && Math.abs(position.x) < this.data.width / 2
-
-          if (this.wasOutside != isOutside && withinPortalBounds) {
-            this.isInPortalSpace = !isOutside
-          }
-
-          this.contents.object3D.visible = this.isInPortalSpace || isOutside
-          this.walls.object3D.visible = !this.isInPortalSpace && isOutside
-          this.portalWall.object3D.visible = this.isInPortalSpace && !isOutside
-          this.portalWorld.object3D.visible = this.isInPortalSpace
-
-          this.wasOutside = isOutside
-        }
-      })
-
-    </script>
-
-  </head>
-  <body>
-    <a-scene
-      xrweb
-      portal
-      xrextras-almost-there
-      xrextras-loading
-      xrextras-runtime-error
-      xrextras-tap-recenter>
-
-      <!-- We can define assets here to be loaded when A-Frame initializes -->
-      <a-assets>
-        <!-- Credit to Poly by Google for the model: https://poly.google.com/view/0fVRHo65E-j -->
-        <a-asset-item id="unicornModel" src="unicorn.glb"></a-asset-item>
-      </a-assets>
-
-      <a-camera
-        id="camera"
-        position="0 5 8">
-      </a-camera>
-
-      <!-- Doorway -->
-      <a-box
-        scale="1 6 1"
-        position="-2.5 3 0"
-        color="cyan"></a-box>
-      <a-box
-        scale="1 6 1"
-        position="2.5 3 0"
-        color="cyan"></a-box>
-      <a-box
-        scale="6 1 1"
-        position="0 6.5 0"
-        color="cyan"></a-box>
-
-      <!-- Hider walls -->
-      <a-entity id="hider-walls">
-        <a-box
-          scale="6 100 1"
-          position="0 57 0"
-          hider-material></a-box>
-        <a-box
-          scale="94 100 1"
-          position="-50 50 0"
-          hider-material></a-box>
-        <a-box
-          scale="94 100 1"
-          position="50 50 0"
-          hider-material></a-box>
-        <a-box
-          scale="200 100 1"
-          position="0 50 200"
-          hider-material></a-box>
-        <a-box
-          scale="200 1 201"
-          position="0 100 100"
-          hider-material></a-box>
-        <a-box
-          scale="200 1 199"
-          position="0 -0.5 100"
-          hider-material></a-box>
-        <a-box
-          scale="1 100 200"
-          position="-100 50 100"
-          hider-material></a-box>
-        <a-box
-          scale="1 100 200"
-          position="100 50 100"
-          hider-material></a-box>
-      </a-entity>
-
-      <a-entity id="portal-wall">
-        <a-plane
-          scale="4 6 1"
-          rotation="180 0 0"
-          position="0 3 0.5"
-          hider-material></a-plane>
-      </a-entity>
-
-      <a-entity id="portal-contents">
-        <a-entity
-          scale="0.3 0.3 0.3"
-          position="0 0 -7"
-          gltf-model="#unicornModel"></a-entity>
-        <a-sky color="#6EBAA7"></a-sky>
-        <a-box
-          scale="200 1 100"
-          position="0 -0.5 -49.5"
-          color="blue"></a-box>
-      </a-entity>
-
-      <a-entity id="portal-world">
-        <a-box
-          scale="200 1 100"
-          position="0 -0.5 49.5"
-          color="blue"></a-box>
-      </a-entity>
-    </a-scene>
-  </body>
+    <section class="contact" id="contact">
+            <div class="container pt100 pb100">
+            <h1 class="mb-5 display-4" >Contacto</h1>
+            <form>
+                  <div class="form-group">
+                        <label for="emailInput">Email</label>
+                        <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  </div>
+                  <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </section>
+    
+    <section class="pricing" id="pricing">
+      <div class="container pt100 pb100">
+        <h1 class="mb-5 display-4">Pricing</h1>
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <div class="card bg-info">
+              <div class="card-header bg-primary text-white">
+                Basic
+              </div>
+              <div class="card-block">
+                <h4 class="card-title">Cool Plan</h4>
+                <p class="card-text">
+                  <ol>
+                    <li>Lorem ipsum </li>
+                    <li>Aliquam tincidunt</li>
+                    <li>Vestibulum auctor.</li>
+                </ol>
+                </p>
+                <a href="#" class="btn btn-primary">Download FREE</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card featured-price bg-inverse text-white">
+              <div class="card-header bg-danger text-uppercase">
+                Most Popular
+              </div>
+              <div class="card-block">
+                <h4 class="card-title">Awesome Plan</h4>
+                <p class="card-text">
+                  <ol>
+                    <li>Lorem ipsum </li>
+                    <li>Aliquam tincidunt</li>
+                    <li>Vestibulum auctor.</li>
+                  </ol>
+                </p>
+                <a href="#" class="btn btn-danger">Buy now</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card bg-info">
+              <div class="card-header bg-primary text-white">
+                Full Deal
+              </div>
+              <div class="card-block">
+                <h4 class="card-title">Amazing Plan</h4>
+                <p class="card-text">
+                  <ol>
+                      <li>Lorem ipsum </li>
+                      <li>Aliquam tincidunt</li>
+                      <li>Vestibulum auctor.</li>
+                  </ol>
+                </p>
+                <a href="#" class="btn btn-primary">Buy now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    <footer class="pt100 pb100">
+      <p>generic footer content</p>
+    </footer>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+      <script src="//cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser.min.js"></script>
+      <script src="functions.js"></script>
+</body>
 </html>
